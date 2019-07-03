@@ -1,0 +1,18 @@
+
+
+<h1></h1>
+
+<script>
+    let h1 = document.getElementsByTagName("h1")[0];
+    setInterval(()=>{
+        var d1 = new Date();
+        var y = d1.getFullYear();
+        var m = d1.getMonth()+1;
+        var d = d1.getDate();
+        var h = d1.getHours();
+        var i = d1.getMinutes();
+        var s = d1.getSeconds();
+        var str = `当前时间是${y}年${m}月${d}日,${h}:${i}:${s}`
+        h1.innerHTML = str;
+    },1000);
+</script>

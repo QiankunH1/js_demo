@@ -1,0 +1,60 @@
+<style>
+    *{margin: 0; padding: 0;}
+    ul{list-style: none;}
+    .nav{
+        background: #cccccc;
+        height: 40px;
+        width: 450px;
+        margin: 0 auto;
+    }
+    ul li{
+        float: left;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+    }
+    ul li a{
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 90px;
+        height: 40px;
+    }
+    a:hover{
+        color: white;
+        background-color: #666;;
+    }
+    ul li ul li{
+        float: none;
+        background-color: #cccccc;
+    }
+    ul li ul{
+        display: none;
+    }
+</style>
+<div id="nav" class="nav">
+    <ul>
+        <li><a href="">网站首页</a></li>
+        <li id="kc"><a href="">课程大纲</a>
+            <ul>
+                <li><a href="">HTML</a></li>
+                <li><a href="">CSS</a></li>
+                <li><a href="">JS</a></li>
+            </ul>
+        </li>
+        <li><a href="">学习中心</a></li>
+        <li><a href="">经典案例</a></li>
+        <li><a href="">关于我们</a></li>
+    </ul>
+</div>
+
+<script>
+    let kc = document.getElementById("kc")
+    let ul = kc.getElementsByTagName('ul')[0]
+    kc.onmouseover = function(){
+        ul.style.display = "block"
+    }
+    kc.onmouseout = function(){
+        ul.style.display = "none"
+    }
+</script>

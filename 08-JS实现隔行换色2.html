@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        ul{
+            width: 1200px;
+            margin: 100px auto;
+        }
+        li{
+            height: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 30px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var ul = document.getElementsByTagName('ul')[0];
+            var arr = ul.childNodes;
+            var newArr = [];
+            for(var i=0; i<arr.length; i++){
+               if (arr[i].nodeType === 1){
+                   newArr.push(arr[i]);
+               }
+           }
+           for(var i=0; i<newArr.length; i++){
+                if (i%2 != 0){
+                    newArr[i].style.backgroundColor = "skyblue";
+                }
+           }
+        }
+    </script>
+</head>
+<body>
+    <ul>
+        <li>Hello,World!!!</li>
+        <li>Hello,World!!!</li>
+        <li>Hello,World!!!</li>
+        <li>Hello,World!!!</li>
+        <li>Hello,World!!!</li>
+        <li>Hello,World!!!</li>
+        <li>Hello,World!!!</li>
+        <li>Hello,World!!!</li>
+        <li>Hello,World!!!</li>
+    </ul>
+</body>
+</html>
+
+
+
+
+
+
+

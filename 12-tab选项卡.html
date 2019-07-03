@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        body{font-size: 12px; background: #cccccc;}
+        ul{list-style-type: none}
+
+        .tabs{width: 300px; margin: 100px auto; background: #fff;}
+        .tabs .options{height: 30px; line-height: 30px;}
+        .tabs .options span{display: inline-block; width: 60px; text-align: center;}
+        .tabs .options span.on{border-bottom: 2px solid orange; font-weight: bold;}
+        .tabs .contents{padding: 10px 0;}
+        .tabs .contents ul{display: none;}
+        .tabs .contents ul li{padding-left: 15px; line-height: 23px;}
+    </style>
+    <script>
+       window.onload = function () {
+            var spans = document.getElementsByTagName('span');
+            var uls = document.getElementsByTagName('ul');
+            for(var i=0; i<spans.length; i++){
+                // 给每一个span加上index属性，值为i
+                spans[i]['index'] = i;
+                spans[i].onmouseover = function () {
+                    // 处理上面标题部分
+                    // 思路：把所有的on状态全部清空，给当前的span加上on状态
+                    for(var j=0; j<spans.length; j++){
+                        spans[j].className = "";
+                    }
+                    this.className = 'on';
+                    this.style.cursor = 'pointer';
+
+                    // 处理下面的内容部分
+                    // 思路：把所有的ul全部隐藏，把当前的ul显示出来
+                    for(var k=0; k<spans.length; k++){
+                        uls[k].style.display = "none";
+                    }
+                    uls[this.index].style.display = 'block';
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="tabs">
+        <div class="options">
+            <span class="on">公告</span><span>规则</span><span>论坛</span><span>安全</span><span>公益</span>
+        </div>
+        <div class="contents">
+            <ul>
+                <li><a href="">阿里苏宁发布,"新三体"战略 打造未来十年格局</a></li>
+                <li><a href="">高诚信会员无条件信任 200余万广告商品被处罚</a></li>
+            </ul>
+            <ul style="display: block">
+                <li><a href="">出售假冒商品规则变更 商品发布数量限制变更</a></li>
+                <li><a href="">中国质造市场管理规范变更 淘宝网营销规则变更</a></li>
+            </ul>
+            <ul>
+                <li><a href="">淘宝招募卖家志愿者 阿里推出兼职神器</a></li>
+                <li><a href="">700家热风淘宝路 是赚钱还是骗子</a></li>
+            </ul>
+            <ul>
+                <li><a href="">淘宝用户必备神器 卖家账户安全9守则</a></li>
+                <li><a href="">支付宝实名认证信息 账户没钱也被骗？</a></li>
+            </ul>
+            <ul>
+                <li><a href="">阿里联合公益计划启动 一图看懂联合公益计划</a></li>
+                <li><a href="">公益宝贝卖家发票索取 公益机构淘宝开店攻略</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

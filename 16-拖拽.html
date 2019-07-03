@@ -1,0 +1,38 @@
+
+
+<style>
+    #box{
+         width: 200px;height: 200px;background-color: red;
+         position: absolute; left: 100px; top: 200px; cursor: pointer;
+    }
+</style>
+
+<div id="box"></div>
+
+<script>    
+    let box = document.getElementById("box");
+    box.onmousedown = function(ev){
+        var oEvent = ev||window.event;
+
+        var mx,my;
+        // 鼠标相对于盒子的x坐标
+        mx = oEvent.clientX - this.offsetLeft;
+        // 鼠标相对于盒子的y坐标
+        my = oEvent.clientY - this.offsetTop;
+
+        document.onmousemove = function(ev){
+            var oEvent = ev||window.event;
+
+            var l ,t;
+            l = oEvent.clientX-mx;
+            t = oEvent.clientY-my;
+            // 目标：
+            box.style.left = l+"px";
+            box.style.top = t+"px"
+        }
+        document.onmouseup = function(){
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+    }
+</script>

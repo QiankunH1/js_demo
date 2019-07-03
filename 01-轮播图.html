@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        *{margin: 0; padding: 0;}
+        li{ list-style-type: none;}
+        img{display: block;}
+
+        #show{ width: 960px; height: 450px; cursor: pointer; 
+        margin: 10px auto; position: relative; overflow: hidden;}
+        #show #pic{ width: 4800px; height: 450px; }
+        #show #pic li{ float: left;width: 960px;  }
+        #show #btn{ position: absolute; left: 0; right: 0; bottom: 20px; text-align: center;}
+        #show #btn li{ width: 16px;height: 16px;display: inline-block; background: url("./imgs/dot.png") no-repeat 0 -16px; margin: 0 6px;}
+        .btn{ position: absolute; width: 60px;height: 90px;top: 50%; margin-top: -45px; background: url("./imgs/ad_ctr.png") no-repeat; display: none; }
+        #show:hover .btn{display: block;}
+        #btnLeft{ left: 0; background-position: 0 0;}
+        #btnRight{ right: 0; background-position: 0 -90px;}
+    </style>
+</head>
+<body>
+    <div id="show">
+        <ul id="pic">
+            <li><img src="./imgs/ad_stock.jpg" alt=""></li>
+            <li><img src="./imgs/ad_auto.jpg" alt=""></li>
+            <li><img src="./imgs/ad_home.jpg" alt=""></li>
+            <li><img src="./imgs/ad_nba.jpg" alt=""></li>
+            <li><img src="./imgs/ad_yuetu.jpg" alt=""></li>
+        </ul>
+        <ul id="btn">
+            <li style="background-position: 0 0;"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div id="btnLeft" class="btn"></div>
+        <div id="btnRight" class="btn"></div>
+    </div>
+</body>
+<script>
+    
+</script>
+</html>

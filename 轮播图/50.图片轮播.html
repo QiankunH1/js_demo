@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片轮播</title>
+	<style type="text/css">
+		*{margin:0; padding:0;}
+		li{list-style: none;}
+		img{display:block;}
+		
+
+		#show{width:960px; height:450px; overflow: hidden; position: relative; cursor:pointer; margin:10px auto;}
+		#pic{width:4800px; height:450px;}
+		#pic li{float:left; width:960px;}
+		#btn{position: absolute; left:0; right:0; bottom:20px; text-align: center;}
+		#btn li{display:inline-block; width:16px; height:16px; background: url(images/dot.png) no-repeat 0 -16px; margin:0 6px;}
+		.btn{position: absolute; width:60px; height:90px; top:50%; margin-top:-45px; background:url(images/ad_ctr.png) no-repeat; display: none;}
+		#show:hover .btn{display:block;}
+		#btnLeft{left:0; background-position: 0 0;}
+		#btnRight{right:0; background-position: 0 -90px;}
+
+
+	</style>
+</head>
+<body>
+	<div id="show">
+		<ul id="pic">
+			<li><img src="images/ad_auto.jpg" alt=""></li>
+			<li><img src="images/ad_stock.jpg" alt=""></li>
+			<li><img src="images/ad_home.jpg" alt=""></li>
+			<li><img src="images/ad_nba.jpg" alt=""></li>
+			<li><img src="images/ad_yuetu.jpg" alt=""></li>
+		</ul>
+		<ul id="btn">
+			<li style="background-position: 0 0;"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div id="btnLeft" class="btn"></div>
+		<div id="btnRight" class="btn"></div>
+	</div>
+
+	<script type="text/javascript" src="move.js"></script>
+	<script type="text/javascript">
+		//获取我们要用到的元素
+		var aBtnLi=document.getElementById('btn').getElementsByTagName('li');//获取到五个li；
+		// console.log(aBtnLi);
+		var oPic=document.getElementById('pic');//获取包裹五张图片的大盒子，方便让五张图片一起移动；
+		var iNow=0;//表示的是当前选中了哪个按钮的索引；
+		//1.给五个li添加点击事件
+		for(var i=0;i<aBtnLi.length;i++){
+			aBtnLi[i].index=i;//记录的是每个按钮的索引；
+			aBtnLi[i].onclick=function(){
+				//具体点击的逻辑
+				//1.控制按钮的样式
+				setBackCss(aBtnLi[iNow],'0 -16px');
+				setBackCss(this,'0 0');
+				setMarL(oPic,this.index);
+				iNow=this.index;//实时更新iNow的值；
+
+			}
+		}
+
+		//封装一个方法，控制按钮的样式变化
+		//dom代表要给哪个元素设置样式，str要设置的具体的值
+		function setBackCss(dom,str){
+			dom.style.backgroundPosition=str;
+		}
+
+		//2.要切换图片，要拿到每张图片的宽度
+		var baseW=oPic.getElementsByTagName('li')[0].offsetWidth;
+		// console.log(baseW);
+		//dom表示的是要个哪个元素设置，index表示的要看的那张图片的索引；
+		function setMarL(dom,index){
+			// dom.style.marginLeft=-index*baseW+'px';
+			fnMove(dom,{marginLeft:-index*baseW});//动画的形式
+		}
+
+		//3.左右按钮的切换
+		var oBtnLeft=document.getElementById('btnLeft');
+		var oBtnRight=document.getElementById('btnRight');
+		// console.log(oBtnLeft,oBtnRight);
+		oBtnLeft.onclick=function(){
+			var even=iNow;
+			iNow--;
+			if(iNow<0){
+				iNow=aBtnLi.length-1;
+			}
+			//even是上一次选中图片的索引，iNow本次要显示图片的索引
+			//接下来的任务是，让按钮的样式发生变化，让图片也跟着变化
+			setBackCss(aBtnLi[even],'0 -16px');
+			setBackCss(aBtnLi[iNow],'0 0');
+			setMarL(oPic,iNow);
+		}
+
+		oBtnRight.onclick=function(){
+			var even=iNow;
+			iNow++;
+			if(iNow>aBtnLi.length-1){
+				iNow=0;
+			}
+			//even是上一次选中图片的索引，iNow本次要显示图片的索引
+			//接下来的任务是，让按钮的样式发生变化，让图片也跟着变化
+			setBackCss(aBtnLi[even],'0 -16px');
+			setBackCss(aBtnLi[iNow],'0 0');
+			setMarL(oPic,iNow);
+		}
+		//4.加定时任务，实现自动轮播；
+		var timer;
+		function setT(){
+			    timer=setInterval(function(){
+				var even=iNow;
+				iNow++;
+				if(iNow>aBtnLi.length-1){
+					iNow=0;
+				}
+				//even是上一次选中图片的索引，iNow本次要显示图片的索引
+				//接下来的任务是，让按钮的样式发生变化，让图片也跟着变化
+				setBackCss(aBtnLi[even],'0 -16px');
+				setBackCss(aBtnLi[iNow],'0 0');
+				setMarL(oPic,iNow);
+			},2000);
+		}
+		setT();
+		//5.鼠标移上的时候，清除定时器，移下的时候启动定时器；
+		var oShow=document.getElementById('show');
+		oShow.onmouseover=function(){
+			clearInterval(timer);
+		}
+		oShow.onmouseout=function(){
+			setT();
+		}
+	</script>
+</body>
+</html>
